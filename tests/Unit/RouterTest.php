@@ -56,3 +56,14 @@ it('Should match a DELETE method route', function () {
     expect($result)->toHaveKeys(['handler', 'path']);
     expect($result['handler']())->toBe('Hello world!');
 });
+
+it('Should match a route with params', function () {
+    $router = new Router();
+    $router->get('/:id', fn () => 'Hello world!');
+
+    $result = $router->match('GET', '/1');
+
+    expect($result)->not->toBe(null);
+    expect($result)->toHaveKeys(['handler', 'path', 'params']);
+    expect($result['handler']())->toBe('Hello world!');
+});

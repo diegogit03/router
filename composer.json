@@ -3,6 +3,9 @@
     "description": "A simpler php router",
     "type": "library",
     "license": "MIT",
+    "scripts": {
+        "test": "pest"
+    },
     "autoload": {
         "psr-4": {
             "Diego03\\Router\\": "src/"
@@ -22,5 +25,8 @@
         "allow-plugins": {
             "pestphp/pest-plugin": true
         }
+    },
+    "require": {
+        "diego03/path-to-regexp": "^1.0"
     }
 }

@@ -4,8 +4,122 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b5aa472983c263ff183da05291a8c5bc",
-    "packages": [],
+    "content-hash": "97db8bb5f70841a6c4d292494d4ec9d5",
+    "packages": [
+        {
+            "name": "diego03/path-to-regexp",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/diegogit03/path-to-regex-php.git",
+                "reference": "beaec06d740f166a4dc46c324736a9baa01a1539"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/diegogit03/path-to-regex-php/zipball/beaec06d740f166a4dc46c324736a9baa01a1539",
+                "reference": "beaec06d740f166a4dc46c324736a9baa01a1539",
+                "shasum": ""
+            },
+            "require": {
+                "rawr/t-regx": "^0.41.5"
+            },
+            "require-dev": {
+                "pestphp/pest": "^2.32"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Diego03\\PathToRegexp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Diego Henrique de Oliveira Madero",
+                    "email": "60300499+diegogit03@users.noreply.github.com"
+                }
+            ],
+            "description": "A very simpler path-to-regexp in php",
+            "homepage": "https://github.com/diegogit03/path-to-regex-php",
+            "support": {
+                "issues": "https://github.com/diegogit03/path-to-regex-php/issues",
+                "source": "https://github.com/diegogit03/path-to-regex-php/tree/1.0.1"
+            },
+            "time": "2024-01-22T12:32:27+00:00"
+        },
+        {
+            "name": "rawr/t-regx",
+            "version": "0.41.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/t-regx/T-Regx.git",
+                "reference": "6c4a64d514fdacfb90b854bf5ef9a498cd6bcc29"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/t-regx/T-Regx/zipball/6c4a64d514fdacfb90b854bf5ef9a498cd6bcc29",
+                "reference": "6c4a64d514fdacfb90b854bf5ef9a498cd6bcc29",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=7.1.0"
+            },
+            "require-dev": {
+                "ext-json": "*",
+                "phpunit/phpunit": "^9.5.4 || ^8.0 || ^7.5",
+                "rawr/cross-data-providers": "^2.3.0",
+                "rawr/fqn-check": "^1.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "helper/helper.php"
+                ],
+                "psr-4": {
+                    "TRegx\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "PHP regular expression brought up to modern standards.",
+            "keywords": [
+                "Match",
+                "PCRE",
+                "delimiters",
+                "expression",
+                "pattern",
+                "patterns",
+                "preg",
+                "prepared",
+                "prepared patterns",
+                "regex",
+                "regexp",
+                "regexps",
+                "regular",
+                "search",
+                "split",
+                "t-regx",
+                "tregx"
+            ],
+            "support": {
+                "issues": "https://github.com/t-regx/T-Regx/issues",
+                "source": "https://github.com/t-regx/T-Regx/tree/0.41.5"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/Danon",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-08-08T14:47:38+00:00"
+        }
+    ],
     "packages-dev": [
         {
             "name": "brianium/paratest",

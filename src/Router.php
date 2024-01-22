@@ -2,14 +2,24 @@
 
 namespace Diego03\Router;
 
+use Diego03\PathToRegexp\PathParser;
+
 class Router
 {
 
-    public $routes = [];
+    public PathParser $parser;
+
+    public array $routes = [];
+
+    public function __construct()
+    {
+        $this->parser = new PathParser();
+    }
 
     private function addRoute($method, string $path, callable $handler)
     {
         $this->routes[] = [
+            'regex' => $this->parser->toRegex($path),
             'method' => $method,
             'path' => $path,
             'handler' => $handler
@@ -45,8 +55,21 @@ class Router
     {
         foreach ($this->routes as $route) {
             if ($method === $route['method']) {
-                if ($url === $route['path']) {
-                    return $route;
+                if ($route['regex']->match($url)->test()) {
+                    $params = [];
+
+                    $matcher = $route['regex']->match($url);
+
+                    $groups = $matcher->first()->namedGroups();
+                    foreach ($groups as $key => $group) {
+                        $params[$key] = $group->text();
+                    }
+
+                    return [
+                        'handler'  => $route['handler'],
+                        'path'  => $route['path'],
+                        'params'  => $params,
+                    ];
                 }
             }
         }
