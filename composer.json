@@ -1,0 +1,19 @@
+{
+    "name": "diego03/router",
+    "description": "A simpler php router",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Diego03\\Router\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Diego Henrique de Oliveira Madero",
+            "email": "60300499+diegogit03@users.noreply.github.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
