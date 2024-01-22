@@ -67,3 +67,19 @@ it('Should match a route with params', function () {
     expect($result)->toHaveKeys(['handler', 'path', 'params']);
     expect($result['handler']())->toBe('Hello world!');
 });
+
+it('Should match a route with optional params', function () {
+    $router = new Router();
+    $router->get('/:id?', fn () => 'Hello world!');
+
+    $resultWithParam = $router->match('GET', '/1');
+    $resultWithoutParam = $router->match('GET', '/');
+
+    expect($resultWithParam)->not->toBe(null);
+    expect($resultWithParam)->toHaveKeys(['handler', 'path', 'params']);
+    expect($resultWithParam['handler']())->toBe('Hello world!');
+
+    expect($resultWithoutParam)->not->toBe(null);
+    expect($resultWithoutParam)->toHaveKeys(['handler', 'path', 'params']);
+    expect($resultWithoutParam['handler']())->toBe('Hello world!');
+})->only();
