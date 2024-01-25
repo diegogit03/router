@@ -82,4 +82,4 @@ it('Should match a route with optional params', function () {
     expect($resultWithoutParam)->not->toBe(null);
     expect($resultWithoutParam)->toHaveKeys(['handler', 'path', 'params']);
     expect($resultWithoutParam['handler']())->toBe('Hello world!');
-})->only();
+});

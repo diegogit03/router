@@ -65,8 +65,6 @@ class Router
                         $params[$key] = $group->text();
                     }
 
-                    var_dump($params);
-
                     return [
                         'handler'  => $route['handler'],
                         'path'  => $route['path'],
