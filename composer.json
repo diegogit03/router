@@ -3,6 +3,7 @@
     "description": "A simpler php router",
     "type": "library",
     "license": "MIT",
+    "version": "1.0.0",
     "scripts": {
         "test": "pest"
     },
@@ -27,6 +28,6 @@
         }
     },
     "require": {
-        "diego03/path-to-regexp": "1.0.2"
+        "diego03/path-to-regexp": "1.2.0"
     }
 }
