@@ -11,6 +11,8 @@ class Router
 
     public array $routes = [];
 
+    public $openedGroup = null;
+
     public function __construct()
     {
         $this->parser = new PathParser();
@@ -18,12 +20,35 @@ class Router
 
     private function addRoute($method, string $path, callable $handler)
     {
-        $this->routes[] = [
+        $route = [
+            'type' => 'route',
             'regex' => $this->parser->toRegex($path),
             'method' => $method,
             'path' => $path,
             'handler' => $handler
         ];
+
+        if ($this->openedGroup) {
+            $route['regex'] = $this->parser->toRegex('/users');
+            $this->openedGroup['routes'][] = $route;
+            return;
+        }
+
+        $this->routes[] = $route;
+    }
+
+    public function group(string $prefix, callable $handler)
+    {
+        $this->openedGroup = [
+            'type' => 'group',
+            'prefix' => $prefix,
+            'routes' => []
+        ];
+
+        $handler();
+
+        $this->routes[] = $this->openedGroup;
+        $this->openedGroup = null;
     }
 
     public function get(string $path, callable $handler)
@@ -54,6 +79,29 @@ class Router
     public function match(string $method, string $url)
     {
         foreach ($this->routes as $route) {
+            if ($route['type'] === 'group') {
+                foreach ($route['routes'] as $groupRoute) {
+                    if ($method === $groupRoute['method']) {
+                        if ($groupRoute['regex']->match($url)->test()) {
+                            $params = [];
+
+                            $matcher = $groupRoute['regex']->match($url);
+
+                            $groups = $matcher->first()->namedGroups();
+                            foreach ($groups as $key => $group) {
+                                $params[$key] = $group->text();
+                            }
+
+                            return [
+                                'handler'  => $groupRoute['handler'],
+                                'path'  => $groupRoute['path'],
+                                'params'  => $params,
+                            ];
+                        }
+                    }
+                }
+            }
+
             if ($method === $route['method']) {
                 if ($route['regex']->match($url)->test()) {
                     $params = [];

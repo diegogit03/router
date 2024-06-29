@@ -83,3 +83,20 @@ it('Should match a route with optional params', function () {
     expect($resultWithoutParam)->toHaveKeys(['handler', 'path', 'params']);
     expect($resultWithoutParam['handler']())->toBe('Hello world!');
 });
+
+it('Should match a route group', function () {
+    $router = new Router();
+    $router->group('/users', function () use ($router) {
+        $router->get('/', fn () => 'get test');
+        $router->post('/', fn () => 'post test');
+    });
+
+    $result = $router->match('GET', '/users');
+    $postresult = $router->match('POST', '/users');
+
+    expect($result)->not()->toBe(null);
+    expect($result['handler']())->toBe('get test');
+
+    expect($postresult)->not()->toBe(null);
+    expect($postresult['handler']())->toBe('post test');
+});

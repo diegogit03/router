@@ -43,6 +43,6 @@ echo json_encode(
 
 -   [x] Support all basic http methods
 -   [x] path params
--   [ ] Group routing
+-   [x] Group routing
 -   [ ] Domain routing
 -   [ ] Middlewares
