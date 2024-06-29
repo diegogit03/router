@@ -3,10 +3,10 @@
 namespace Diego03\Router;
 
 use Diego03\PathToRegexp\PathParser;
+use Psr\Http\Message\RequestInterface;
 
 class Router
 {
-
     public PathParser $parser;
 
     public array $routes = [];
@@ -76,8 +76,11 @@ class Router
         $this->addRoute('DELETE', $path, $handler);
     }
 
-    public function match(string $method, string $url)
+    public function match(RequestInterface $request)
     {
+        $method = $request->getMethod();
+        $url = $request->getUri()->getPath();
+
         foreach ($this->routes as $route) {
             if ($route['type'] === 'group') {
                 foreach ($route['routes'] as $groupRoute) {
